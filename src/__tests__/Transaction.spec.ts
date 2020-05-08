@@ -13,6 +13,11 @@ let connection: Connection;
 describe('Transaction', () => {
   beforeAll(async () => {
     connection = await createConnection('test-connection');
+    
+    await connection.query('DROP TABLE IF EXISTS transactions');
+    await connection.query('DROP TABLE IF EXISTS categories');
+    await connection.query('DROP TABLE IF EXISTS migrations');
+    
     await connection.runMigrations();
   });
 
